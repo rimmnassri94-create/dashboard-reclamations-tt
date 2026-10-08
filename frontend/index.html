@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Réclamations - Tunisie Télécom</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <h2>Tunisie Télécom</h2>
+    <p>Dashboard Réclamations</p>
+  </div>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="#" class="active">Tableau de bord</a></li>
+      <li><a href="#reclamations">Réclamations</a></li>
+      <li><a href="#statistiques">Statistiques</a></li>
+    </ul>
+  </nav>
+</aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="main-content">
+
+    <!-- HEADER -->
+    <header class="header">
+      <h1>Suivi des réclamations clients</h1>
+      <div class="header-actions">
+        <button id="btn-add-reclamation" class="btn btn-primary">+ Nouvelle réclamation</button>
+        <button id="btn-export-csv" class="btn btn-secondary">Exporter CSV</button>
+      </div>
+    </header>
+
+    <!-- CARTES STATISTIQUES -->
+    <section class="stats-cards">
+      <div class="card">
+        <h3>Total réclamations</h3>
+        <p id="stat-total">--</p>
+      </div>
+      <div class="card">
+        <h3>Ouvertes</h3>
+        <p id="stat-ouvertes">--</p>
+      </div>
+      <div class="card">
+        <h3>Résolues</h3>
+        <p id="stat-resolues">--</p>
+      </div>
+      <div class="card">
+        <h3>Urgentes</h3>
+        <p id="stat-urgentes">--</p>
+      </div>
+    </section>
+
+    <!-- GRAPHIQUES -->
+    <section class="charts" id="statistiques">
+      <div class="chart-container">
+        <h3>Réclamations par statut</h3>
+        <canvas id="chart-statut"></canvas>
+      </div>
+      <div class="chart-container">
+        <h3>Réclamations par type</h3>
+        <canvas id="chart-type"></canvas>
+      </div>
+      <div class="chart-container">
+        <h3>Évolution dans le temps</h3>
+        <canvas id="chart-evolution"></canvas>
+      </div>
+      <div class="chart-container">
+        <h3>Réclamations par priorité</h3>
+        <canvas id="chart-priorite"></canvas>
+      </div>
+    </section>
+
+    <!-- FILTRES -->
+    <section class="filters">
+      <div class="filter-group">
+        <label for="filter-statut">Statut</label>
+        <select id="filter-statut">
+          <option value="">Tous</option>
+          <option value="Ouverte">Ouverte</option>
+          <option value="En cours">En cours</option>
+          <option value="Résolue">Résolue</option>
+          <option value="Fermée">Fermée</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="filter-type">Type</label>
+        <select id="filter-type">
+          <option value="">Tous</option>
+          <option value="Internet">Internet</option>
+          <option value="Ligne fixe">Ligne fixe</option>
+          <option value="Mobile">Mobile</option>
+          <option value="Facturation">Facturation</option>
+          <option value="Autre">Autre</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="filter-priorite">Priorité</label>
+        <select id="filter-priorite">
+          <option value="">Toutes</option>
+          <option value="Basse">Basse</option>
+          <option value="Moyenne">Moyenne</option>
+          <option value="Haute">Haute</option>
+          <option value="Urgente">Urgente</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="filter-date-debut">Date début</label>
+        <input type="date" id="filter-date-debut">
+      </div>
+
+      <div class="filter-group">
+        <label for="filter-date-fin">Date fin</label>
+        <input type="date" id="filter-date-fin">
+      </div>
+
+      <div class="filter-group filter-search">
+        <label for="filter-recherche">Recherche</label>
+        <input type="text" id="filter-recherche" placeholder="Rechercher dans la description...">
+      </div>
+
+      <button id="btn-appliquer-filtres" class="btn btn-primary">Filtrer</button>
+      <button id="btn-reinitialiser-filtres" class="btn btn-secondary">Réinitialiser</button>
+    </section>
+
+    <!-- TABLEAU DES RÉCLAMATIONS -->
+    <section class="table-section" id="reclamations">
+      <h2>Liste des réclamations</h2>
+      <table id="table-reclamations">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Client</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Statut</th>
+            <th>Priorité</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Les lignes seront générées dynamiquement par JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+  <!-- MODAL DE DÉTAIL -->
+<div id="modal-overlay" class="modal-overlay" style="display: none;">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Détail de la réclamation</h3>
+      <button id="modal-fermer" class="modal-close">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-contenu">
+      <!-- Rempli dynamiquement par JavaScript -->
+    </div>
+  </div>
+</div>
+</body>

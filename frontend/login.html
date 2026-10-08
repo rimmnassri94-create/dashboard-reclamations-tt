@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - Dashboard Réclamations</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-body">
+
+  <div class="login-box">
+    <h2>Tunisie Télécom</h2>
+    <p>Dashboard Réclamations</p>
+
+    <form id="login-form">
+      <div class="filter-group">
+        <label for="login-username">Identifiant</label>
+        <input type="text" id="login-username" required>
+      </div>
+
+      <div class="filter-group">
+        <label for="login-password">Mot de passe</label>
+        <input type="password" id="login-password" required>
+      </div>
+
+      <p id="login-erreur" class="login-erreur"></p>
+
+      <button type="submit" class="btn btn-primary login-btn">Se connecter</button>
+    </form>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
